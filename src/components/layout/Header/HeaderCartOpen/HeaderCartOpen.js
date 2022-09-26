@@ -43,7 +43,10 @@ export const HeaderCartOpen = (props) => {
                     cartCtx.items.map((item) => (
                         <ItemCart key={item.id}>
                             <div>
-                                <img src={API_IMG + item.posterPath} />
+                                <img
+                                    src={API_IMG + item.posterPath}
+                                    alt={îtem.title}
+                                />
                             </div>
                             <div>
                                 <span>{item.title}</span>

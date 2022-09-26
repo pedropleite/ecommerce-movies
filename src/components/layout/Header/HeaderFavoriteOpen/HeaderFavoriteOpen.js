@@ -32,7 +32,10 @@ export const HeaderFavoriteOpen = () => {
                     favoriteCtx.items.map((item) => (
                         <ItemCart key={item.id}>
                             <div>
-                                <img src={API_IMG + item.posterPath} />
+                                <img
+                                    src={API_IMG + item.posterPath}
+                                    alt={item.title}
+                                />
                             </div>
                             <div>
                                 <span>{item.title}</span>

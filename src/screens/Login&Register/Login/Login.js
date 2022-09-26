@@ -9,7 +9,6 @@ import imageLoginRegister from '../../../assets/imageLoginRegister/movies.jpg';
 import { useAuthentication } from '../../../hooks/useAuthentication';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { redirect } from 'react-router-dom';
 
 export const Login = () => {
     const [email, setEmail] = useState('');
