@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+    margin: 0 auto;
     margin-top: 3rem;
+    max-width: 1000px;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -83,6 +85,10 @@ export const ContainerForm = styled.div`
             background-color: #fff;
             border-bottom: 1px solid rgba(0, 0, 0, 0.3);
             color: #000;
+
+            &:focus {
+                outline: none;
+            }
         }
     }
 

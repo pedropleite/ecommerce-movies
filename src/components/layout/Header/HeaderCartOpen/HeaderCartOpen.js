@@ -45,7 +45,7 @@ export const HeaderCartOpen = (props) => {
                             <div>
                                 <img
                                     src={API_IMG + item.posterPath}
-                                    alt={îtem.title}
+                                    alt={item.title}
                                 />
                             </div>
                             <div>
