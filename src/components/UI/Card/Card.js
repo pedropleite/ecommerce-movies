@@ -47,7 +47,7 @@ export const Card = (props) => {
             };
             props.onAddFavorite(item);
         } else {
-            props.onRemoveFavorite(props.id);
+            props.onRemoveFavorite(props);
         }
     };
 

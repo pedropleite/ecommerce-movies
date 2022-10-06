@@ -6,23 +6,26 @@ import {
     EmptyCartMessage,
     CheckoutContainer,
 } from './styles';
-import { useCart } from '../../../../context/CartContext';
+
+import { cartActions } from '../../../../store/cartSlice';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 const API_IMG = 'https://image.tmdb.org/t/p/w500/';
 
 export const HeaderCartOpen = (props) => {
-    const cartCtx = useCart();
-
+    const dispatch = useDispatch();
     const navigate = useNavigate();
+    const cartItems = useSelector((state) => state.cart.items);
+    const totalAmount = useSelector((state) => state.cart.totalAmount);
 
     const cartItemRemoveHandler = (id) => {
-        cartCtx.removeItem(id);
+        dispatch(cartActions.remove(id));
     };
 
     const cartItemsClear = () => {
-        cartCtx.clearCart();
+        dispatch(cartActions.clear());
     };
 
     const redirectToCheckout = () => {
@@ -39,8 +42,8 @@ export const HeaderCartOpen = (props) => {
                 <span onClick={cartItemsClear}>Esvaziar</span>
             </ContainerCartOpenDescription>
             <ContainerItem>
-                {cartCtx.items.length > 0 &&
-                    cartCtx.items.map((item) => (
+                {cartItems.length > 0 &&
+                    cartItems.map((item) => (
                         <ItemCart key={item.id}>
                             <div>
                                 <img
@@ -69,13 +72,13 @@ export const HeaderCartOpen = (props) => {
                             </div>
                         </ItemCart>
                     ))}
-                {cartCtx.items.length === 0 && (
+                {cartItems.length === 0 && (
                     <EmptyCartMessage>Carrinho vazio...</EmptyCartMessage>
                 )}
                 <CheckoutContainer>
                     <div>
                         <span>Total</span>
-                        <span>R$ {cartCtx.totalAmount},00</span>
+                        <span>R$ {totalAmount},00</span>
                     </div>
                     <button onClick={redirectToCheckout}>
                         Finalizar compra

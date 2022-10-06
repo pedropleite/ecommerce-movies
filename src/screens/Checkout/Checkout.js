@@ -11,15 +11,16 @@ import {
 import ReactInputMask from 'react-input-mask';
 
 import { CheckoutShowItems } from './CheckoutShowItems/CheckoutShowItems';
-import { useCart } from '../../context/CartContext';
 import { useNavigate } from 'react-router-dom';
 import { useRef, useState } from 'react';
 import { Modal } from '../../components/UI/Modal/Modal';
+import { useSelector } from 'react-redux';
 
 const isEmpty = (value) => value.trim() === '';
 
 export const Checkout = () => {
-    const cartCtx = useCart();
+    const cartItems = useSelector((state) => state.cart.items);
+    const totalAmount = useSelector((state) => state.cart.totalAmount);
     const navigate = useNavigate();
     const [isFormValid, setIsFormValid] = useState(null);
     const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -55,7 +56,7 @@ export const Checkout = () => {
 
         setIsFormValid(formIsValid);
 
-        if (!formIsValid || cartCtx.items.length === 0) {
+        if (!formIsValid || cartItems.length === 0) {
             return;
         }
 
@@ -135,11 +136,11 @@ export const Checkout = () => {
                             <span>Qtd</span>
                             <span>Preço</span>
                         </div>
-                        {cartCtx.items.length > 0 &&
-                            cartCtx.items.map((item) => (
+                        {cartItems.length > 0 &&
+                            cartItems.map((item) => (
                                 <CheckoutShowItems key={item.id} item={item} />
                             ))}
-                        {cartCtx.items.length === 0 && (
+                        {cartItems.length === 0 && (
                             <ErrorMessageContainer>
                                 <span>Nenhum item no carrinho...</span>
                             </ErrorMessageContainer>
@@ -148,7 +149,7 @@ export const Checkout = () => {
                     <CartPriceContainer>
                         <div>
                             <span>Total</span>
-                            <span>R$ {cartCtx.totalAmount},00</span>
+                            <span>R$ {totalAmount},00</span>
                         </div>
                         <button onClick={confirmHandler}>Finalizar</button>
                         <button

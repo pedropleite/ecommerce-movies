@@ -1,12 +1,12 @@
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { Counter } from '../styles';
-import { useFavorite } from '../../../../context/FavoriteContext';
 import { HeaderFavoriteOpen } from '../HeaderFavoriteOpen/HeaderFavoriteOpen';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 export const HeaderFavorite = () => {
-    const favoriteCtx = useFavorite();
     const [favoriteIsOpen, setFavoriteIsOpen] = useState(false);
+    const favoriteItems = useSelector((state) => state.favorite.items);
 
     const toggleFavorite = () => {
         setFavoriteIsOpen((prev) => {
@@ -26,7 +26,7 @@ export const HeaderFavorite = () => {
                     onClick={toggleFavorite}
                 />
                 <Counter style={{ right: '67%' }}>
-                    {favoriteCtx.items.length}
+                    {favoriteItems.length}
                 </Counter>
             </div>
             {favoriteIsOpen && <HeaderFavoriteOpen />}

@@ -10,16 +10,17 @@ import {
     ModalDescription,
 } from './styles';
 
-import { useCart } from '../../../context/CartContext';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { cartActions } from '../../../store/cartSlice';
 
 export const Modal = (props) => {
-    const cartCtx = useCart();
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const handleModal = () => {
         props.toggleModal();
-        cartCtx.clearCart();
+        dispatch(cartActions.clear());
         navigate('/');
     };
 

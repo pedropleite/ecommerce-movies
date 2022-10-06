@@ -5,20 +5,22 @@ import {
     ItemCart,
     EmptyCartMessage,
 } from './styles';
-import { useFavorite } from '../../../../context/FavoriteContext';
 
 import DeleteIcon from '@mui/icons-material/Delete';
+import { useDispatch, useSelector } from 'react-redux';
+import { favoriteActions } from '../../../../store/favoriteSlice';
 
 export const HeaderFavoriteOpen = () => {
-    const favoriteCtx = useFavorite();
     const API_IMG = 'https://image.tmdb.org/t/p/w500/';
+    const dispatch = useDispatch();
+    const favoriteItems = useSelector((state) => state.favorite.items);
 
-    const favoriteItemRemove = (id) => {
-        favoriteCtx.removeFavorite(id);
+    const favoriteItemRemove = (item) => {
+        dispatch(favoriteActions.remove(item));
     };
 
     const favoriteClear = () => {
-        favoriteCtx.clearFavorite();
+        dispatch(favoriteActions.clear());
     };
 
     return (
@@ -28,8 +30,8 @@ export const HeaderFavoriteOpen = () => {
                 <span onClick={favoriteClear}>Esvaziar</span>
             </ContainerCartOpenDescription>
             <ContainerItem>
-                {favoriteCtx.items.length > 0 &&
-                    favoriteCtx.items.map((item) => (
+                {favoriteItems.length > 0 &&
+                    favoriteItems.map((item) => (
                         <ItemCart key={item.id}>
                             <div>
                                 <img
@@ -45,14 +47,14 @@ export const HeaderFavoriteOpen = () => {
                                     <DeleteIcon
                                         sx={{ cursor: 'pointer' }}
                                         onClick={() => {
-                                            favoriteItemRemove(item.id);
+                                            favoriteItemRemove(item);
                                         }}
                                     />
                                 </span>
                             </div>
                         </ItemCart>
                     ))}
-                {favoriteCtx.items.length === 0 && (
+                {favoriteItems.length === 0 && (
                     <EmptyCartMessage>Favorito vazio...</EmptyCartMessage>
                 )}
             </ContainerItem>

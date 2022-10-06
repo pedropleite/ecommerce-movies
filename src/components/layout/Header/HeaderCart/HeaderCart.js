@@ -1,12 +1,12 @@
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { HeaderCartOpen } from '../HeaderCartOpen/HeaderCartOpen';
 import { Counter } from '../styles';
-import { useCart } from '../../../../context/CartContext';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 export const HeaderCart = () => {
-    const cartCtx = useCart();
     const [cartIsOpen, setCartIsOpen] = useState(false);
+    const cartItems = useSelector((state) => state.cart.items);
 
     const toggleCart = () => {
         setCartIsOpen((prev) => {
@@ -25,7 +25,7 @@ export const HeaderCart = () => {
                     }}
                     onClick={toggleCart}
                 />
-                <Counter>{cartCtx.items.length}</Counter>
+                <Counter>{cartItems.length}</Counter>
             </div>
             {cartIsOpen && (
                 <HeaderCartOpen

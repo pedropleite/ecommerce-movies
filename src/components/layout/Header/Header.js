@@ -12,12 +12,14 @@ import LoginIcon from '@mui/icons-material/Login';
 import { HeaderCart } from './HeaderCart/HeaderCart';
 import { HeaderFavorite } from './HeaderFavorite/HeaderFavorite';
 
-import { useAuth } from '../../../context/AuthContext';
+import { useSelector, useDispatch } from 'react-redux';
 import { useAuthentication } from '../../../hooks/useAuthentication';
 import { useNavigate } from 'react-router-dom';
+import { searchActions } from '../../../store/searchSlice';
 
-export const Header = (props) => {
-    const { user } = useAuth();
+export const Header = () => {
+    const user = useSelector((state) => state.auth.user);
+    const dispatch = useDispatch();
     const { logout } = useAuthentication();
 
     const navigate = useNavigate();
@@ -32,7 +34,7 @@ export const Header = (props) => {
                     type='text'
                     placeholder='Pesquisa'
                     onChange={(e) => {
-                        props.handleSearch(e.target.value);
+                        dispatch(searchActions.changeSearch(e.target.value));
                     }}
                 />
             </SearchContainer>

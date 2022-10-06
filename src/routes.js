@@ -3,11 +3,11 @@ import { Register } from './screens/Login&Register/Register/Register';
 import { Home } from './screens/Home/Home';
 import { Checkout } from './screens/Checkout/Checkout';
 
-import { useAuth } from './context/AuthContext';
+import { useSelector } from 'react-redux';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
 export const Paths = () => {
-    const { user } = useAuth();
+    const user = useSelector((state) => state.auth.user);
 
     return (
         <Routes>

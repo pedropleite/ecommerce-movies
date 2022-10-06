@@ -1,25 +1,24 @@
 import { Card } from '../../components/UI/Card/Card';
 import { useState, useEffect } from 'react';
-import { useCart } from '../../context/CartContext';
-import { useFavorite } from '../../context/FavoriteContext';
 import axios from 'axios';
 
 import { CardsContainer } from './styles';
-import { useSearch } from '../../context/SearchContext';
+import { useDispatch, useSelector } from 'react-redux';
+import { cartActions } from '../../store/cartSlice';
+import { favoriteActions } from '../../store/favoriteSlice';
 
 const API_SEARCH =
     'https://api.themoviedb.org/3/search/movie?api_key=32f00a67600eef14143e09e681c210f0&query';
 
 export const Home = () => {
     const [movies, setMovies] = useState([]);
-    const search = useSearch();
+    const search = useSelector((state) => state.search.search);
 
     useEffect(() => {
         if (search !== '') {
             axios
                 .get(`${API_SEARCH}=${search}`)
                 .then((res) => {
-                    console.log(res.data.results);
                     setMovies(res.data.results);
                 })
                 .catch((err) => console.log(err));
@@ -44,19 +43,18 @@ export const Home = () => {
             });
     }, []);
 
-    const cartCtx = useCart();
-    const favoriteCtx = useFavorite();
+    const dispatch = useDispatch();
 
     const cartItemAddHandler = (item) => {
-        cartCtx.addItem(item);
+        dispatch(cartActions.add(item));
     };
 
     const favoriteItemAddHandler = (item) => {
-        favoriteCtx.addFavorite(item);
+        dispatch(favoriteActions.add(item));
     };
 
-    const favoriteItemRemoveHandler = (id) => {
-        favoriteCtx.removeFavorite(id);
+    const favoriteItemRemoveHandler = (item) => {
+        dispatch(favoriteActions.remove(item));
     };
 
     return (
@@ -76,8 +74,8 @@ export const Home = () => {
                     onAddFavorite={(item) => {
                         favoriteItemAddHandler(item);
                     }}
-                    onRemoveFavorite={(id) => {
-                        favoriteItemRemoveHandler(id);
+                    onRemoveFavorite={(item) => {
+                        favoriteItemRemoveHandler(item);
                     }}
                 />
             ))}

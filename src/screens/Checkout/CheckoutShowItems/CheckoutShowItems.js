@@ -1,12 +1,13 @@
 import { CartItemContainer, IconContainer, CellContainer } from '../styles';
 
 import DeleteIcon from '@mui/icons-material/Delete';
-import { useCart } from '../../../context/CartContext';
+import { useDispatch } from 'react-redux';
+import { cartActions } from '../../../store/cartSlice';
 
 const API_IMG = 'https://image.tmdb.org/t/p/w500/';
 
 export const CheckoutShowItems = (item) => {
-    const cartCtx = useCart();
+    const dispatch = useDispatch();
 
     return (
         <>
@@ -34,7 +35,9 @@ export const CheckoutShowItems = (item) => {
                             fontSize: '1.4rem',
                             cursor: 'pointer',
                         }}
-                        onClick={() => cartCtx.removeItem(item.item.id)}
+                        onClick={() => {
+                            dispatch(cartActions.remove(item.item.id));
+                        }}
                     />
                 </IconContainer>
             </CartItemContainer>
