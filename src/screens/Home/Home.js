@@ -10,7 +10,7 @@ import { favoriteActions } from '../../store/favoriteSlice';
 const API_SEARCH =
     'https://api.themoviedb.org/3/search/movie?api_key=32f00a67600eef14143e09e681c210f0&query';
 
-export const Home = () => {
+const Home = () => {
     const [movies, setMovies] = useState([]);
     const search = useSelector((state) => state.search.search);
 
@@ -82,3 +82,5 @@ export const Home = () => {
         </CardsContainer>
     );
 };
+
+export default Home;

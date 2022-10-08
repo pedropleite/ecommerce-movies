@@ -18,7 +18,7 @@ import { useSelector } from 'react-redux';
 
 const isEmpty = (value) => value.trim() === '';
 
-export const Checkout = () => {
+const Checkout = () => {
     const cartItems = useSelector((state) => state.cart.items);
     const totalAmount = useSelector((state) => state.cart.totalAmount);
     const navigate = useNavigate();
@@ -166,3 +166,5 @@ export const Checkout = () => {
         </>
     );
 };
+
+export default Checkout;
