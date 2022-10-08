@@ -9,7 +9,7 @@ import { useState, useEffect } from 'react';
 import { useAuthentication } from '../../../hooks/useAuthentication';
 import { useNavigate } from 'react-router-dom';
 
-export const Register = () => {
+const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -110,3 +110,5 @@ export const Register = () => {
         </Container>
     );
 };
+
+export default Register;
