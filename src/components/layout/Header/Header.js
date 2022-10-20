@@ -15,7 +15,7 @@ import { HeaderFavorite } from './HeaderFavorite/HeaderFavorite';
 import { useSelector, useDispatch } from 'react-redux';
 import { useAuthentication } from '../../../hooks/useAuthentication';
 import { useNavigate } from 'react-router-dom';
-import { searchActions } from '../../../store/searchSlice';
+import { searchActions } from '../../../store/slices/searchSlice';
 
 export const Header = () => {
     const user = useSelector((state) => state.auth.user);

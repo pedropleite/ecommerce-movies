@@ -1,14 +1,14 @@
 import { AppContainer } from './appStyles';
 import { GlobalStyle } from './globalStyles';
 
-import { Header } from './components/layout/Header/Header';
+import { Header } from './components/index';
 import { Paths } from './routes';
 
 import { useAuthentication } from './hooks/useAuthentication';
 import { onAuthStateChanged } from 'firebase/auth';
 import { useEffect } from 'react';
 
-import { authActions } from './store/authSlice';
+import { authActions } from './store/slices/authSlice';
 import { useDispatch } from 'react-redux';
 
 function App() {

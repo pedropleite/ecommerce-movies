@@ -13,7 +13,7 @@ import ReactInputMask from 'react-input-mask';
 import { CheckoutShowItems } from './CheckoutShowItems/CheckoutShowItems';
 import { useNavigate } from 'react-router-dom';
 import { useRef, useState } from 'react';
-import { Modal } from '../../components/UI/Modal/Modal';
+import { Modal } from '../../components/index';
 import { useSelector } from 'react-redux';
 
 const isEmpty = (value) => value.trim() === '';

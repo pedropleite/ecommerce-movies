@@ -8,7 +8,7 @@ import {
 
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useDispatch, useSelector } from 'react-redux';
-import { favoriteActions } from '../../../../store/favoriteSlice';
+import { favoriteActions } from '../../../../store/slices/favoriteSlice';
 
 export const HeaderFavoriteOpen = () => {
     const API_IMG = 'https://image.tmdb.org/t/p/w500/';

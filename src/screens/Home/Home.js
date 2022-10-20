@@ -1,11 +1,11 @@
-import { Card } from '../../components/UI/Card/Card';
+import { Card } from '../../components/index';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import { CardsContainer } from './styles';
 import { useDispatch, useSelector } from 'react-redux';
-import { cartActions } from '../../store/cartSlice';
-import { favoriteActions } from '../../store/favoriteSlice';
+import { cartActions } from '../../store/slices/cartSlice';
+import { favoriteActions } from '../../store/slices/favoriteSlice';
 
 const API_SEARCH =
     'https://api.themoviedb.org/3/search/movie?api_key=32f00a67600eef14143e09e681c210f0&query';
