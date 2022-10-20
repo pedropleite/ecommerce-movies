@@ -2,7 +2,7 @@ import { CartItemContainer, IconContainer, CellContainer } from '../styles';
 
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useDispatch } from 'react-redux';
-import { cartActions } from '../../../store/cartSlice';
+import { cartActions } from '../../../store/slices/cartSlice';
 
 const API_IMG = 'https://image.tmdb.org/t/p/w500/';
 

@@ -12,7 +12,7 @@ import {
 
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { cartActions } from '../../../store/cartSlice';
+import { cartActions } from '../../../store/slices/cartSlice';
 
 export const Modal = (props) => {
     const navigate = useNavigate();

@@ -7,7 +7,7 @@ import {
     CheckoutContainer,
 } from './styles';
 
-import { cartActions } from '../../../../store/cartSlice';
+import { cartActions } from '../../../../store/slices/cartSlice';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import DeleteIcon from '@mui/icons-material/Delete';
